@@ -38,7 +38,9 @@ class Visualizer:
         f = (f - np.min(f)) / (np.max(f) - np.min(f))
         f *= bar_count
         spectrogram = np.log(np.abs(zxx) + 0.0001)
-        bar_length = (spectrogram - spectrogram.min()) / (spectrogram.max() - spectrogram.min()) * max_length
+        bar_length = (spectrogram.T - spectrogram.min(axis=1)) / (spectrogram.max(axis=1) - spectrogram.min(axis=1)) * max_length
+        bar_length[np.isnan(bar_length)] = 0
+        bar_length = bar_length.T ** 4
 
         def get_bar_length(x):
             return np.mean(bar_length[(np.floor(f) == x) | (np.ceil(f) == x)].T, axis=1).T
