@@ -1,3 +1,4 @@
 *.wav
 *.osb
-*.pyc
+sb/*
+*/__pycache__/*

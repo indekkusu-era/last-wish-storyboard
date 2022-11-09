@@ -2,7 +2,7 @@ import numpy as np
 from scipy.signal import stft
 import soundfile as sf
 from utils.objects import VectorScale, Move
-from utils.sb import Sprite, StoryBoard
+from utils.sb import Sprite
 
 SB_DEFAULT_X, SB_DEFAULT_Y = 640, 480
 
@@ -61,6 +61,8 @@ class Visualizer:
         
         return visualizer_render
 
-if __name__ == "__main__":
-    visualizer = Visualizer('Kry.exe - Last Wish (feat. Ice).wav')
-    visualizer.render(ms=100)
+def last_wish_visualizer():
+    audio_fp = "Kry.exe - Last Wish (feat. Ice).wav"
+    visualizer = Visualizer(audio_fp)
+    objects = visualizer.render(ms=33, max_length=1)
+    return objects

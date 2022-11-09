@@ -1,11 +1,24 @@
 from utils.sb import StoryBoard
-from visualizer import Visualizer
+from effects.visualizer import last_wish_visualizer
 
 audio_fp = "Kry.exe - Last Wish (feat. Ice).wav"
 
-visualizer = Visualizer(audio_fp)
+def storyboard():
+    background_objects = []
+    foreground_objects = []
+    overlay_objects = []
 
-objects = visualizer.render(ms=33, max_length=1)
+    # add visualizer into the background
+    visualizer = last_wish_visualizer()
+    background_objects += visualizer
 
-sb = StoryBoard(objects)
-sb.osb('test.osb')
+    sb = StoryBoard(background_objects, foreground_objects, overlay_objects)
+    return sb
+
+def main():
+    osb_fp = "Kry.exe - Last Wish (feat. Ice) (FelixSpade).osb"
+    sb = storyboard()
+    sb.osb(osb_fp)
+
+if __name__ == "__main__":
+    main()
