@@ -14,6 +14,10 @@ class Sprite:
         self.filename = file_name
         self.action = []
     
+    def from_image(self, image_content: Image):
+        image_content.save(self.filename)
+        return self
+
     def add_action(self, action: Type[Action]):
         self.action.append(action)
         return self
@@ -35,6 +39,7 @@ class Sprite:
         for i in range(len(self.action)):
             self.action.change_offset(offset)
         return self
+
 
 # class SpriteGroup:
 #     def __init__(self) -> None:

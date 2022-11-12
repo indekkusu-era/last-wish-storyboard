@@ -72,6 +72,3 @@ def white_ball(fp):
     
     im.putalpha(Image.fromarray(al.astype(np.uint8)))
     return im
-
-def save(im, fp):
-    im.save(fp)
