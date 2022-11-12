@@ -1,6 +1,7 @@
 from typing import List, Type
 from typing_extensions import Literal
 from enum import Enum
+from PIL import Image
 from .actions import Action
 
 class Position(Enum):
@@ -15,9 +16,11 @@ class Sprite:
     
     def add_action(self, action: Type[Action]):
         self.action.append(action)
+        return self
     
     def add_actions(self, actions: List[Type[Action]]):
         self.action += actions
+        return self
     
     def render(self, pos: Literal[Position.BACKGROUND, Position.FOREGROUND, Position.OVERLAY]):
         string = {
@@ -31,6 +34,7 @@ class Sprite:
     def change_offset(self, offset: int):
         for i in range(len(self.action)):
             self.action.change_offset(offset)
+        return self
 
 # class SpriteGroup:
 #     def __init__(self) -> None:
