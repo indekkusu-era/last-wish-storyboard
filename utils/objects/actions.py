@@ -14,6 +14,7 @@ class Action:
         self.start_time += int(offset)
         if self.end_time != "":
             self.end_time += int(offset)
+        return self
 
     def render(self):
         param_text = ""

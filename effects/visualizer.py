@@ -58,7 +58,6 @@ class Visualizer:
             visualizer_object.add_actions(actions)
             visualizer_render.append(visualizer_object)
             
-        
         return visualizer_render
 
 def last_wish_visualizer():

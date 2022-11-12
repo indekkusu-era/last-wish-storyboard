@@ -2,7 +2,7 @@ import numpy as np
 import os
 from PIL import Image, ImageDraw, ImageFont
 
-def get_text_image(text, output_file, font_file, size):
+def get_text_image(text, font_file, size):
     MAX_W, MAX_H = 12800,7200
 
     im = Image.new('RGBA', (MAX_W, MAX_H))
@@ -19,22 +19,19 @@ def get_text_image(text, output_file, font_file, size):
 
     draw.text((0,0), text, font=font)
 
-    im.save(output_file)
+    return im
 
-def generate_characters(characters, font_file, size, folder='sb_char'):
-    if folder not in os.listdir():
-        os.mkdir(folder)
-    
-    f_str = folder + "/{}.png"
+def generate_characters(characters, font_file, size):
+    chars = {}
     for chrs in characters:
         f_name = str(ord(chrs))
-        get_text_image(chrs, f_str.format(f_name), font_file, size)
+        chars[f_name] = get_text_image(chrs, font_file, size)
 
-def get_color(RGB: tuple, fp: str):
+def get_color(RGB: tuple):
     color = Image.new('RGB', (1280, 720), RGB)
-    color.save(fp)
+    return color
 
-def gradient(RGB, fp):
+def gradient(RGB):
     # Define width and height of image
     W, H = 720, 720
 
@@ -49,19 +46,18 @@ def gradient(RGB, fp):
 
     # Push that radial gradient transparency onto red image and save
     im.putalpha(Image.fromarray(alpha.astype(np.uint8)))
-    im.save(fp)
+    return im
 
-def rectangle(fp, width, height):
+def rectangle(width, height):
     im = Image.new(mode='RGB', size=(width, height), color=(255,255,255))
+    return im
 
-    im.save(fp)
-
-def randomglitcheffect(fp, width, height, RGB, chance):
+def randomglitcheffect(width, height, RGB, chance):
     im = Image.new(mode='RGB', size=(width, height), color=RGB)
     alp = np.random.choice([0,1], p=[1 - chance, chance], size=(width, height)) * 255
 
     im.putalpha(Image.fromarray(alp.astype(np.uint8)))
-    im.save(fp)
+    return im
 
 def white_ball(fp):
     W, H = 500, 500
@@ -75,4 +71,7 @@ def white_ball(fp):
     
     
     im.putalpha(Image.fromarray(al.astype(np.uint8)))
+    return im
+
+def save(im, fp):
     im.save(fp)
