@@ -1,3 +1,4 @@
+import os
 from typing import List, Type
 from typing_extensions import Literal
 from enum import Enum
@@ -15,6 +16,8 @@ class Sprite:
         self.action = []
     
     def from_image(self, image_content: Image):
+        if os.path.isfile(self.filename):
+            return self
         image_content.save(self.filename)
         return self
 
