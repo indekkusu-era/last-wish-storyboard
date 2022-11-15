@@ -6,8 +6,7 @@ def get_text_image(text, font_file, size):
     MAX_W, MAX_H = 12800,7200
 
     im = Image.new('RGBA', (MAX_W, MAX_H))
-    font = ImageFont.truetype(
-        font_file, size)
+    font = ImageFont.truetype(font_file, size)
 
     relative_w, relative_h = font.getsize(text)
 
@@ -59,7 +58,7 @@ def randomglitcheffect(width, height, RGB, chance):
     im.putalpha(Image.fromarray(alp.astype(np.uint8)))
     return im
 
-def white_ball(fp):
+def white_ball():
     W, H = 500, 500
     im = Image.new(mode='RGB', size=(W,H), color=(255,255,255))
     
@@ -72,3 +71,15 @@ def white_ball(fp):
     
     im.putalpha(Image.fromarray(al.astype(np.uint8)))
     return im
+
+def glitch_crop(im: Image, n_portions: int):
+    visible = np.random.randint(0, n_portions, size=im.size).T
+    for i in range(n_portions):
+        alpha = np.ones(im.size) * 255
+        alpha = alpha.T
+        alpha[visible != i] = 0
+        alpha[np.array(im)[:, :, 0] == 0] = 0 
+        copy_image = im.copy()
+        alpha = Image.fromarray(alpha.astype(np.uint8))
+        copy_image.putalpha(alpha)
+        yield copy_image

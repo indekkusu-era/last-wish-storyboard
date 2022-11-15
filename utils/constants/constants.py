@@ -1,0 +1,20 @@
+mappers = {
+    2285: ('HowToPlayLN', 'LNCrypted Memories "Corrupted Fragments"'),
+    13714: ('Funk', 'Phantom Hallucination "Encryptic Storm"'),
+    32000: ('[Crz]Crysarlene', 'Serenity "Calm Before The Apocalypse"'),
+    42552: ('Funk', 'Phantom Hallucination "Apocalyptic Divination"'),
+    66552: ('[Crz]Crysarlene', 'Serenity "The Great Depression"'),
+    82552: ('chxu', ''),
+    98552: ('Logan636', ''),
+    119322: ('drmango', 'Havoc "Doppelganger Syndrome"'),
+    133037: ('FelixSpade', 'Illusion Art "Berserker\'s Haze"'),
+    159314: ('drmango', 'Havoc  "Nuclear Outburst"'),
+    191603: ('drmango', 'Havoc "Suspense"'),
+    209603: ('chxu', ''),
+    225603: ('chxu', ''),
+    257603: ('Hylotl', ''),
+    273603: ('DannyPX', ''),
+    289603: ('FelixSpade', 'Illusion Art "Doomsday Reverie"'),
+    305603: ('Hylotl', ''),
+    321603: ('DannyPX', '')
+}
