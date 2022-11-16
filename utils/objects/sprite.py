@@ -11,8 +11,9 @@ class Position(Enum):
     OVERLAY = 2
 
 class Sprite:
-    def __init__(self, file_name):
+    def __init__(self, file_name, align='Centre'):
         self.filename = file_name
+        self.align = align
         self.action = []
     
     def from_image(self, image_content: Image):
@@ -35,7 +36,7 @@ class Sprite:
             Position.FOREGROUND: "Foreground",
             Position.OVERLAY: "Overlay"
         }
-        text = f'Sprite,{string[pos]},Centre,"{self.filename}",320,240\n ' + "\n ".join([i.render() for i in self.action])
+        text = f'Sprite,{string[pos]},{self.align},"{self.filename}",320,240\n ' + "\n ".join([i.render() for i in self.action])
         return text + "\n"
     
     def change_offset(self, offset: int):

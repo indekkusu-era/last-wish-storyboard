@@ -6,10 +6,10 @@ mappers = {
     66552: ('[Crz]Crysarlene', 'Serenity "The Great Depression"'),
     82552: ('chxu', ''),
     98552: ('Logan636', ''),
-    119322: ('drmango', 'Havoc "Doppelganger Syndrome"'),
+    119322: ('doctormango', 'Havoc "Doppelganger Syndrome"'),
     133037: ('FelixSpade', 'Illusion Art "Berserker\'s Haze"'),
-    159314: ('drmango', 'Havoc  "Nuclear Outburst"'),
-    191603: ('drmango', 'Havoc "Suspense"'),
+    159314: ('doctormango', 'Havoc  "Nuclear Outburst"'),
+    191603: ('doctormango', 'Havoc "Suspense"'),
     209603: ('chxu', ''),
     225603: ('chxu', ''),
     257603: ('Hylotl', ''),
@@ -18,3 +18,7 @@ mappers = {
     305603: ('Hylotl', ''),
     321603: ('DannyPX', '')
 }
+
+mappers_list = 'Logan636,FelixSpade,[Crz]Crysarlene,HowToPlayLN,TheFunk,doctormango,Hylotl,DannyPX,chxu'.split(",")
+
+SB_DEFAULT_X, SB_DEFAULT_Y = 640, 480

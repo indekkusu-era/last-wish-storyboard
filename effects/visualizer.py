@@ -1,10 +1,9 @@
 import numpy as np
 from scipy.signal import stft
 import soundfile as sf
-from utils.objects import VectorScale, Move
+from utils.objects import VectorScale, Move, Fade
 from utils.sb import Sprite
-
-SB_DEFAULT_X, SB_DEFAULT_Y = 640, 480
+from utils.constants.constants import SB_DEFAULT_X, SB_DEFAULT_Y
 
 class Visualizer:
     def __init__(self, fp):
@@ -54,7 +53,8 @@ class Visualizer:
             actions.append(Move(0, t[0], t[-1], pos, pos))
             for t1, size1, t2, size2 in zip(t[:-1], size_t[:-1], t[1:], size_t[1:]):
                 actions.append(VectorScale(0, int(t1), int(t2), (0.025, float(size1)), (0.025, float(size2))))
-            visualizer_object = Sprite('sb/white.png')
+            visualizer_object = Sprite('sb/white.png', align='BottomCentre')
+            visualizer_object.add_action(Fade(0, 0, dur, 0.5, 0.5))
             visualizer_object.add_actions(actions)
             visualizer_render.append(visualizer_object)
             
@@ -63,5 +63,5 @@ class Visualizer:
 def last_wish_visualizer():
     audio_fp = "Kry.exe - Last Wish (feat. Ice).wav"
     visualizer = Visualizer(audio_fp)
-    objects = visualizer.render(ms=33, max_length=1)
+    objects = visualizer.render(ms=33, max_length=0.80)
     return objects

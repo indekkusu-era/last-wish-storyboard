@@ -2,8 +2,7 @@ import numpy as np
 from utils.objects.images import get_text_image, glitch_crop
 from utils.objects.sprite import Sprite
 from utils.objects.actions import Fade, Move
-
-SB_DEFAULT_X, SB_DEFAULT_Y = 640, 480
+from utils.constants.constants import SB_DEFAULT_X, SB_DEFAULT_Y
 
 class VocalText:
     def __init__(self, text: str, font_size: int, font_fp: str, n_glitch_portions: int):
