@@ -16,7 +16,7 @@ class VocalText:
         text_image = get_text_image(self._text, self._font_fp, self._font_size)
         self._glitched_image = list(glitch_crop(text_image, self._n_portions))
     
-    def render(self, t0, t1, period=50):
+    def render(self, t0, t_stationary, t1, period=50):
         list_sprites = []
         t = t0
         opacity_slope = 1 / (t1 - t0)
@@ -24,12 +24,12 @@ class VocalText:
         for i in range(len(self._glitched_image)):
             sp = Sprite(f"sb/{fp_name}{i}.png")
             sp.from_image(self._glitched_image[i])
-            sp.add_action(Move(0, t0 // 3 + t1 * 2 // 3 + 51, t0 // 3 + t1 * 2 // 3 + 52, (SB_DEFAULT_X // 2, SB_DEFAULT_Y // 2), (SB_DEFAULT_X // 2, SB_DEFAULT_Y // 2)))
-            sp.add_action(Fade(0, t0 // 3 + t1 * 2 // 3 + 51, t0 // 3 + t1 * 2 // 3 + 52, 1, 1))
+            sp.add_action(Move(0, t_stationary + 51, t_stationary + 52, (SB_DEFAULT_X // 2, SB_DEFAULT_Y // 2), (SB_DEFAULT_X // 2, SB_DEFAULT_Y // 2)))
+            sp.add_action(Fade(0, t_stationary + 51, t_stationary + 52, 1, 1))
             sp.add_action(Fade(0, t1 - 1, t1, 1, 0))
             list_sprites.append(sp)
 
-        while t <= t0 // 3 + t1 * 2 // 3:
+        while t < t_stationary:
             rng = np.sort(np.random.uniform(0, 1, (len(self._glitched_image),2)) * period, axis=1)
             for i in range(len(list_sprites)):
                 start, end = rng[i]

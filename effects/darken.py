@@ -27,4 +27,14 @@ def this_is_your_last_wish():
     sprite.add_action(Fade(0, start, max_opa, 0, 1))
     sprite.add_action(Fade(0, end, end + 1, 1, 0))
     return sprite
+
+def intro():
+    start, max_opa = 2285, 13714
+    end = 14857
+    sprite = Sprite('sb/white.png')
+    sprite.add_action(Color(0, start, end, (0,0,0), (0,0,0)))
+    sprite.add_action(Scale(0, start, end, 5, 5))
+    sprite.add_action(Fade(0, start, max_opa, 0.727, 0.727))
+    sprite.add_action(Fade(0, max_opa, end, 0.727, 0))
+    return sprite
     
