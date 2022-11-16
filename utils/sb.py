@@ -168,3 +168,4 @@ def merge_sb(f1, f2):
     sb2 = StoryBoard().from_osb(f2)
 
     return sb1.merge(sb2)
+    

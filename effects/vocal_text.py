@@ -18,7 +18,6 @@ class VocalText:
         self._glitched_image = list(glitch_crop(text_image, self._n_portions))
     
     def render(self, t0, t1, period=50):
-        # next event time advance mechanism
         list_sprites = []
         t = t0
         opacity_slope = 1 / (t1 - t0)
@@ -43,4 +42,3 @@ class VocalText:
             t += period
         
         return list_sprites
-
