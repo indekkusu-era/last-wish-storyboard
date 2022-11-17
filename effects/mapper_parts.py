@@ -47,7 +47,6 @@ def mapper_bar(part: Part):
     
     all_sprites = []
     
-    mapper_fname = name.replace(" ", "_")
     card_fname = card.replace(" ", "_").replace("\"", "")
     mappername = Sprite(f"sb/{name}.png", align="CentreLeft") #name of the mapper
     cardname = Sprite(f"sb/{card_fname}.png", align="CentreLeft") #name of the mapper card
@@ -73,10 +72,10 @@ def mapper_bar(part: Part):
     delay = 314
     timebar.add_action(Move(0, start, start+delay, (0, 70), (20, 70)))
     timebar.add_action(Move(0, end-delay, end, (20, 70), (40, 70)))
-    mappername.add_action(Move(0, start, start+delay, (0, 100), (20, 100)))
-    mappername.add_action(Move(0, end-delay, end, (20, 100), (40, 100)))
-    cardname.add_action(Move(0, start, start+delay, (0, 120), (20, 120)))
-    cardname.add_action(Move(0, end-delay, end, (20, 120), (40, 120)))
+    mappername.add_action(Move(0, start, start+delay, (0, 120), (20, 120)))
+    mappername.add_action(Move(0, end-delay, end, (20, 120), (40, 120)))
+    cardname.add_action(Move(0, start, start+delay, (0, 160), (20, 160)))
+    cardname.add_action(Move(0, end-delay, end, (20, 160), (40, 160)))
     
     all_sprites.extend([timebar, mappername, cardname])
     return all_sprites
