@@ -5,7 +5,8 @@
 '''
 
 from utils.objects import Fade, Move, VectorScale
-from utils.sb import Sprite, StoryBoard
+from utils.sb import Sprite
+from .countdown import Countdown
 from utils.objects.images import get_text_image
 
 #flashing color for bar 4 measures before the end of drain bar -> component 2 for end
@@ -36,6 +37,9 @@ class Part:
     def endtime(self):
         #returns end of bar in milliseconds
         return self.t_end
+    
+    def countdown(self):
+        return Countdown(self.t_start, self.t_end).render()
 
 #effect: generates bar on top with mapper name below, then their card name
 #fades in from the left, fades out to the right
@@ -78,6 +82,7 @@ def mapper_bar(part: Part):
     cardname.add_action(Move(0, end-delay, end, (20, 160), (40, 160)))
     
     all_sprites.extend([timebar, mappername, cardname])
+    all_sprites += part.countdown()
     return all_sprites
     
 def all_parts():
