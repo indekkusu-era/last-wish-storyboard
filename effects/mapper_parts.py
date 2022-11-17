@@ -1,11 +1,12 @@
 '''
-*    Title: Mapper's Parts for a Storyboard
+*    Title: Mapper's Parts for Storyboard
 *    Author: Polytetral
-*    Date: 15th November 2022
+*    Date: 17th November 2022
 '''
 
 from utils.objects import Fade, Move, VectorScale
-from utils.sb import Sprite
+from utils.sb import Sprite, StoryBoard
+from utils.objects.images import get_text_image
 
 #flashing color for bar 4 measures before the end of drain bar -> component 2 for end
 #redtransitions = [Color(0, tstart, tend, (255, 255, 255), (255, 0, 0)), Color(0, tstart, tend, (255, 0, 0), (255, 255, 255))]
@@ -20,22 +21,18 @@ class Part:
         self.t_start = t_start
         self.t_end = t_end
             
-    @staticmethod
     def mapper(self):
         #returns name of mapper given
         return self.mapper_name
     
-    @staticmethod
     def cardname(self):
-        #returns name of care given
+        #returns name of card given
         return self.card_name
     
-    @staticmethod
     def starttime(self):
         #returns start of bar in milliseconds
         return self.t_start
     
-    @staticmethod
     def endtime(self):
         #returns end of bar in milliseconds
         return self.t_end
@@ -50,15 +47,18 @@ def mapper_bar(part: Part):
     
     all_sprites = []
     
-    mappername = Sprite("mappername.png") #name of the mapper
-    cardname = Sprite("card.png") #name of the mapper card
-    timebar = Sprite("timebar.png") #this bar should span the length minus some border pixels
+    card_fname = card.replace(" ", "_").replace("\"", "")
+    mappername = Sprite(f"sb/{name}.png", align="CentreLeft") #name of the mapper
+    cardname = Sprite(f"sb/{card_fname}.png", align="CentreLeft") #name of the mapper card
+    mappername.from_image(get_text_image(name, 'resources/NewRocker-Regular.ttf', 30))
+    cardname.from_image(get_text_image(card, 'resources/NewRocker-Regular.ttf', 20))
+    timebar = Sprite(f"sb/white.png", align = "CentreLeft") #this bar should span the length minus some border pixels
 
-    timebar.add_action(VectorScale(0, start, end, (1.0, 1.0), (0.0, 1.0))) #(1.0, 1.0) start size, (0.0, 1.0) end size
+    timebar.add_action(VectorScale(0, start, end, (0.5, 0.025), (0.0, 0.025))) #(1.0, 1.0) start size, (0.0, 1.0) end size
     
     #fade+move in and outs for the names etc
-    standardfadein = Fade(0, start, start+10, 0, 100)
-    standardfadeout = Fade(0, end-10, end, 100, 0)
+    standardfadein = Fade(0, start, start+314, 0, 1)
+    standardfadeout = Fade(0, end-314, end, 1, 0)
     
     #add for all fades
     mappername.add_action(standardfadein)
@@ -69,19 +69,59 @@ def mapper_bar(part: Part):
     timebar.add_action(standardfadeout)
 
     #add for all moves
-    timebar.add_action(Move(0, start, start+10, (0, 20), (20, 20)))
-    timebar.add_action(Move(0, end-10, end, (20, 20), (40, 20)))
-    mappername.add_action(Move(0, start, start+10, (0, 50), (20, 50)))
-    mappername.add_action(Move(0, end-10, end, (20, 50), (40, 50)))
-    cardname.add_action(Move(0, start, start+10, (0, 70), (20, 70)))
-    cardname.add_action(Move(0, end-10, end, (20, 70), (40, 70)))
+    delay = 314
+    timebar.add_action(Move(0, start, start+delay, (0, 70), (20, 70)))
+    timebar.add_action(Move(0, end-delay, end, (20, 70), (40, 70)))
+    mappername.add_action(Move(0, start, start+delay, (0, 120), (20, 120)))
+    mappername.add_action(Move(0, end-delay, end, (20, 120), (40, 120)))
+    cardname.add_action(Move(0, start, start+delay, (0, 160), (20, 160)))
+    cardname.add_action(Move(0, end-delay, end, (20, 160), (40, 160)))
     
     all_sprites.extend([timebar, mappername, cardname])
     return all_sprites
     
-#use case: take your case for example but idk if it works
-def example_bar():
-    htpln = Part("HowToPlayLN", "LNCrypted Memories \"Corrupted Fragments\"", 2285, 13714)
-    part_sprites = mapper_bar(htpln)
-    return part_sprites
+def all_parts():
+    #htpln = Part("HowToPlayLN", "LNCrypted Memories \"Corrupted Fragments\"", 2285, 13714) example， but is now omitted cus of intro
+    #fill in spellcard names when mappers have input their card names
+    funk1 = Part("TheFunk", "Phantom Hallucination \"Encryptic Storm\"", 13714, 32000)
+    funk2 = Part("TheFunk", "Phantom Hallucination \"Apocalyptic Devination\"", 32000, 42552)
+    sere1 = Part("[Crz]Crysarlene", "Serenity \"Calm Before The Apocalypse\"", 42552, 66552)
+    sere2 = Part("[Crz]Crysarlene", "Serenity \"The Great Depression\"", 66552, 82552)
+    #chxu1 = Part("chxu", "something", 82552, 98552)
+    #logan = Part("Logan636", "something", 98552, 119322)
+    mango1 = Part("doctormango", "Havoc \"Doppelganger Syndrome\"", 119322, 133037)
+    felix1 = Part("FelixSpade", "Illusion Art \"Berserker's Haze\"", 133037, 159314)
+    akats = Part("ERA Hatsuki", "The Great \"eLegaNtic Outburst\"", 159314, 191603)
+    mango2 = Part("doctormango", "Havoc \"Suspense\"", 191603, 209603)
+    #chxu2 = Part("chxu", "something1", 209603, 225603)
+    #chxu3 = Part("chxu", "something2", 225603, 257603)
+    hylotl1 = Part("Hylotl", "TBC", 257603, 273603)
+    danny1 = Part("DannyPX", "TBC", 273603, 289603)
+    felix2 = Part("FelixSpade", "Illusion Art \"Doomsday Reverie\"", 289603, 305603)
+    hylotl2 = Part("Hylotl", "TBC", 305603, 321603)
+    danny2 = Part("DannyPX", "TBC", 321603, 330103)
+    
+    #add all parts (im lazy to generalize since its a countable number lmao)
+    all_bars = []
+    all_bars.extend(mapper_bar(funk1))
+    all_bars.extend(mapper_bar(funk2))
+    all_bars.extend(mapper_bar(sere1))
+    all_bars.extend(mapper_bar(sere2))
+    #all_bars.extend(mapper_bar(chxu1))
+    #all_bars.extend(mapper_bar(logan))
+    all_bars.extend(mapper_bar(mango1))
+    all_bars.extend(mapper_bar(felix1))
+    all_bars.extend(mapper_bar(akats))
+    all_bars.extend(mapper_bar(mango2))
+    #all_bars.extend(mapper_bar(chxu2))
+    #all_bars.extend(mapper_bar(chxu3))
+    all_bars.extend(mapper_bar(hylotl1))
+    all_bars.extend(mapper_bar(danny1))
+    all_bars.extend(mapper_bar(felix2))
+    all_bars.extend(mapper_bar(hylotl2))
+    all_bars.extend(mapper_bar(danny2))
+    
+    return all_bars
 
+    # bars_sb = StoryBoard(background_objects = all_bars)
+    # bars_sb.osb("drainbars.osb")
