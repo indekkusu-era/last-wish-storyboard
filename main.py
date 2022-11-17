@@ -53,8 +53,9 @@ def storyboard():
     background_objects += all_parts()
 
     # dark objects
-    darkened_objects = [do_you_think_i_want_this(), i_wont_leave_you_behind(), this_is_your_last_wish(), intro()]
+    darkened_objects = [do_you_think_i_want_this(), i_wont_leave_you_behind(), this_is_your_last_wish()]
     overlay_objects += darkened_objects
+    background_objects.append(intro())
 
     # mapper transitions
     # sample_transition = MapperTransition('HowToPlayLN', 'Normal Distribution', 'sb/mappers/htpln.png')
@@ -68,7 +69,7 @@ def storyboard():
         
         text_intro = FadeInFadeOut(text, font, 50)
         text_sprite = text_intro.render(pos, t_start, t_end)
-        overlay_objects.append(text_sprite)
+        foreground_objects.append(text_sprite)
     
     # add transition to mappers
     _nine = get_text_image('9', font, 100)
