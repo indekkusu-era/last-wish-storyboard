@@ -10,6 +10,7 @@ from parts import MappersList, FadeInFadeOut, TransitionToMapper
 from utils.constants.constants import mappers_list, SB_DEFAULT_X, SB_DEFAULT_Y
 from utils.objects.images import get_text_image
 from utils.objects import Rotate
+from effects import Countdown, generate_number_sprites
 
 np.random.seed(8)
 
@@ -39,6 +40,7 @@ def create_folders():
     create_if_not_exist('sb/mappers')
 
 def storyboard():
+    generate_number_sprites('resources/NewRocker-Regular.ttf', 50)
     background_objects = []
     foreground_objects = []
     overlay_objects = []
@@ -46,13 +48,13 @@ def storyboard():
     # add visualizer into the background
     visualizer = last_wish_visualizer()
     background_objects += visualizer
-    
+
     # add drain bar & mapper parts
     background_objects += all_parts()
 
     # dark objects
     darkened_objects = [do_you_think_i_want_this(), i_wont_leave_you_behind(), this_is_your_last_wish(), intro()]
-    background_objects += darkened_objects
+    overlay_objects += darkened_objects
 
     # mapper transitions
     # sample_transition = MapperTransition('HowToPlayLN', 'Normal Distribution', 'sb/mappers/htpln.png')
@@ -66,7 +68,7 @@ def storyboard():
         
         text_intro = FadeInFadeOut(text, font, 50)
         text_sprite = text_intro.render(pos, t_start, t_end)
-        background_objects.append(text_sprite)
+        overlay_objects.append(text_sprite)
     
     # add transition to mappers
     _nine = get_text_image('9', font, 100)
@@ -86,7 +88,7 @@ def storyboard():
     # add vocal text at foreground
     for timestamp, text in text_timestamps.items():
         sps = VocalText(text, 50, font, 5)
-        foreground_objects += sps.render(*timestamp, period=25)
+        overlay_objects += sps.render(*timestamp, period=25)
 
     sb = StoryBoard(background_objects, foreground_objects, overlay_objects)
     return sb
