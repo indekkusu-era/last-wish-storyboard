@@ -5,6 +5,7 @@ from effects.visualizer import last_wish_visualizer
 from effects.vocal_text import VocalText
 from effects.darken import do_you_think_i_want_this, i_wont_leave_you_behind, this_is_your_last_wish, intro
 from effects.mapper_transition import MapperTransition
+from effects.mapper_parts import all_parts
 from parts import MappersList, FadeInFadeOut, TransitionToMapper
 from utils.constants.constants import mappers_list, SB_DEFAULT_X, SB_DEFAULT_Y
 from utils.objects.images import get_text_image
@@ -45,6 +46,9 @@ def storyboard():
     # add visualizer into the background
     visualizer = last_wish_visualizer()
     background_objects += visualizer
+    
+    # add drain bar & mapper parts
+    background_objects += all_parts()
 
     # dark objects
     darkened_objects = [do_you_think_i_want_this(), i_wont_leave_you_behind(), this_is_your_last_wish(), intro()]
