@@ -28,7 +28,7 @@ class Part:
     
     def cardname(self):
         #returns name of card given
-        return self.card_name
+        return self.card_name.replace(" \"", "\n\"")
     
     def starttime(self):
         #returns start of bar in milliseconds
@@ -51,7 +51,7 @@ def mapper_bar(part: Part):
     
     all_sprites = []
     
-    card_fname = card.replace(" ", "_").replace("\"", "")
+    card_fname = card.replace("\n", "_").replace("_", " ").replace("\"", "")
     mappername = Sprite(f"sb/{name}.png", align="CentreLeft") #name of the mapper
     cardname = Sprite(f"sb/{card_fname}.png", align="CentreLeft") #name of the mapper card
     mappername.from_image(get_text_image(name, 'resources/NewRocker-Regular.ttf', 30))
@@ -81,7 +81,7 @@ def mapper_bar(part: Part):
     cardname.add_action(Move(0, start, start+delay, (0, 160), (20, 160)))
     cardname.add_action(Move(0, end-delay, end, (20, 160), (40, 160)))
     
-    all_sprites.extend([timebar, mappername, cardname])
+    all_sprites.extend([mappername, cardname])
     all_sprites += part.countdown()
     return all_sprites
     

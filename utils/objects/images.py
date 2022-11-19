@@ -2,13 +2,19 @@ import numpy as np
 import os
 from PIL import Image, ImageDraw, ImageFont
 
+def get_size(font: ImageFont, text: str):
+    lines = text.replace("\n\n", "\na\n").split("\n")
+    w = max([font.getsize(l)[0] + 5 for l in lines])
+    h = sum([font.getsize(l)[1] + 5 for l in lines])
+    return w, h
+
 def get_text_image(text, font_file, size):
     MAX_W, MAX_H = 12800,7200
 
     im = Image.new('RGBA', (MAX_W, MAX_H))
     font = ImageFont.truetype(font_file, size)
 
-    relative_w, relative_h = font.getsize(text)
+    relative_w, relative_h = get_size(font, text)
 
     mid_w, mid_h = MAX_W / 2, MAX_H / 2
     epsilon = 5
