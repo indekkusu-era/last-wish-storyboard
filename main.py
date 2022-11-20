@@ -50,7 +50,7 @@ def storyboard():
     background_objects += visualizer
 
     # add drain bar & mapper parts
-    background_objects += all_parts()
+    overlay_objects += all_parts()
 
     # dark objects
     darkened_objects = [do_you_think_i_want_this(), i_wont_leave_you_behind(), this_is_your_last_wish()]
@@ -67,7 +67,7 @@ def storyboard():
         if i % 2:
             pos = (SB_DEFAULT_X - pos[0], SB_DEFAULT_Y - pos[1])
         
-        text_intro = FadeInFadeOut(text, font, 50)
+        text_intro = FadeInFadeOut(text, font, 30)
         text_sprite = text_intro.render(pos, t_start, t_end)
         foreground_objects.append(text_sprite)
     
@@ -83,12 +83,12 @@ def storyboard():
     # add mappers list
     mapperslist = MappersList(mappers_list)
     appear_time = [12571, 12642, 12785, 12928, 13071, 13214, 13357, 13428, 13571]
-    mapper_sprites = mapperslist.render(appear_time, 13714, font, 30)
+    mapper_sprites = mapperslist.render(appear_time, 13714, font, 20)
     background_objects += mapper_sprites
 
     # add vocal text at foreground
     for timestamp, text in text_timestamps.items():
-        sps = VocalText(text, 50, font, 5)
+        sps = VocalText(text, 25, font, 5)
         overlay_objects += sps.render(*timestamp, period=25)
 
     sb = StoryBoard(background_objects, foreground_objects, overlay_objects)
