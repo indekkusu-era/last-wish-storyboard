@@ -16,15 +16,15 @@ class VocalText:
         text_image = get_text_image(self._text, self._font_fp, self._font_size)
         self._glitched_image = list(glitch_crop(text_image, self._n_portions))
     
-    def render(self, t0, t_stationary, t1, period=50):
+    def render(self, t0, t_stationary, t1, period=50, pos=(SB_DEFAULT_X // 2, SB_DEFAULT_Y // 2)):
         list_sprites = []
         t = t0
-        opacity_slope = 1 / (t1 - t0)
-        fp_name = self._text.replace(" ", "_").replace("?", "_").replace(".", "")
+        opacity_slope = 1 / (t_stationary - t0)
+        fp_name = self._text.replace(" ", "_").replace("?", "_").replace(".", "").replace("\"", "")
         for i in range(len(self._glitched_image)):
             sp = Sprite(f"sb/{fp_name}{i}.png")
             sp.from_image(self._glitched_image[i])
-            sp.add_action(Move(0, t_stationary + 51, t_stationary + 52, (SB_DEFAULT_X // 2, SB_DEFAULT_Y // 2), (SB_DEFAULT_X // 2, SB_DEFAULT_Y // 2)))
+            sp.add_action(Move(0, t_stationary + 51, t_stationary + 52, pos, pos))
             sp.add_action(Fade(0, t_stationary + 51, t_stationary + 52, 1, 1))
             sp.add_action(Fade(0, t1 - 1, t1, 1, 0))
             list_sprites.append(sp)
@@ -34,8 +34,8 @@ class VocalText:
             for i in range(len(list_sprites)):
                 start, end = rng[i]
                 opacity = ((t + start) - t0) * opacity_slope
-                offset = (2 * (i % 2) - 1) * (1 - (t1 - (t + start)) / (t1 - t0)) * 20 + SB_DEFAULT_X // 2
-                list_sprites[i].add_action(Move(0, t + start - 1, t + start, (offset, SB_DEFAULT_Y // 2), (offset, SB_DEFAULT_Y // 2)))
+                offset = (2 * (i % 2) - 1) * (1 - (t_stationary - (t_stationary + start)) / (t1 - t0)) * 20 + pos[0]
+                list_sprites[i].add_action(Move(0, t + start - 1, t + start, (offset, pos[1]), (offset, pos[1])))
                 list_sprites[i].add_action(Fade(0, t + start - 1, t + start, 0, opacity))
                 list_sprites[i].add_action(Fade(0, t + end - 1, t + end, opacity, 0))
             t += period
