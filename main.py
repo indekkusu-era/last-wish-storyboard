@@ -15,7 +15,7 @@ from effects import Countdown, generate_number_sprites
 np.random.seed(8)
 
 audio_fp = "Kry.exe - Last Wish (feat. Ice).wav"
-font = 'resources/NewRocker-Regular.ttf'
+font = 'resources/Pirulen.ttf'
 
 text_timestamps = {
     (41052, 42052, 42552): "Do you think I want this?",
@@ -40,7 +40,7 @@ def create_folders():
     create_if_not_exist('sb/mappers')
 
 def storyboard():
-    generate_number_sprites('resources/NewRocker-Regular.ttf', 50)
+    generate_number_sprites('resources/Pirulen.ttf', 50)
     background_objects = []
     foreground_objects = []
     overlay_objects = []
@@ -59,7 +59,7 @@ def storyboard():
 
     # mapper transitions
     # sample_transition = MapperTransition('HowToPlayLN', 'Normal Distribution', 'sb/mappers/htpln.png')
-    # background_objects += sample_transition.transition((157714, 158514), (159314, 160114), "resources/NewRocker-Regular.ttf", 30)
+    # background_objects += sample_transition.transition((157714, 158514), (159314, 160114), "resources/Pirulen.ttf", 30)
 
     # intro text
     for i, ((t_start, t_end), text) in enumerate(intro_text.items()):

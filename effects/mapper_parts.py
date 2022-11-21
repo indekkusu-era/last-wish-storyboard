@@ -43,8 +43,8 @@ class Part:
         return Countdown(self.t_start, self.t_end).render()
     
     def render(self):
-        glitch_mapper_name = VocalText(self.mapper_name, 20, 'resources/NewRocker-Regular.ttf', 5)
-        glitch_spell_card = VocalText(self.card_name, 15, 'resources/NewRocker-Regular.ttf', 5)
+        glitch_mapper_name = VocalText(self.mapper_name, 20, 'resources/Pirulen.ttf', 5)
+        glitch_spell_card = VocalText(self.card_name, 15, 'resources/Pirulen.ttf', 5)
         mapper_name_sprites = glitch_mapper_name.render(self.t_start, self.t_start + 500, self.t_end, 20, (320, 50))
         card_sprites = glitch_spell_card.render(self.t_start, self.t_start + 500, self.t_end, 15, (320, 80))
 
@@ -87,8 +87,8 @@ def mapper_bar(part: Part):
     card_fname = card.replace("\n", "_").replace("_", " ").replace("\"", "")
     mappername = Sprite(f"sb/{name}.png", align="CentreLeft") #name of the mapper
     cardname = Sprite(f"sb/{card_fname}.png", align="CentreLeft") #name of the mapper card
-    mappername.from_image(get_text_image(name, 'resources/NewRocker-Regular.ttf', 30))
-    cardname.from_image(get_text_image(card, 'resources/NewRocker-Regular.ttf', 20))
+    mappername.from_image(get_text_image(name, 'resources/Pirulen.ttf', 30))
+    cardname.from_image(get_text_image(card, 'resources/Pirulen.ttf', 20))
     timebar = Sprite(f"sb/white.png", align = "CentreLeft") #this bar should span the length minus some border pixels
 
     timebar.add_action(VectorScale(0, start, end, (0.5, 0.025), (0.0, 0.025))) #(1.0, 1.0) start size, (0.0, 1.0) end size
@@ -130,8 +130,8 @@ def mapper_bar_2(part: Part):
     card_fname = card.replace("\n", "_").replace(" ", "_").replace("\"", "")
     mappername = Sprite(f"sb/{name}.png") #name of the mapper
     cardname = Sprite(f"sb/{card_fname}.png") #name of the mapper card
-    mappername.from_image(get_text_image(name, 'resources/NewRocker-Regular.ttf', 30))
-    cardname.from_image(get_text_image(card, 'resources/NewRocker-Regular.ttf', 20))
+    mappername.from_image(get_text_image(name, 'resources/Pirulen.ttf', 30))
+    cardname.from_image(get_text_image(card, 'resources/Pirulen.ttf', 20))
     black = Sprite("sb/white.png")
     timer_bar_left = Sprite("sb/white.png", align="CentreLeft") # timer bar
     timer_bar_right = Sprite("sb/white.png", align="CentreRight") # another timer bar
