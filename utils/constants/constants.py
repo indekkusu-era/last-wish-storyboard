@@ -19,6 +19,6 @@ mappers = {
     321603: ('DannyPX', '')
 }
 
-mappers_list = 'Logan636,FelixSpade,[Crz]Crysarlene,HowToPlayLN,TheFunk,doctormango,Hylotl,DannyPX,chxu'.split(",")
+mappers_list = 'Logan636,FelixSpade,[Crz]Crysarlene,HowToPlayLN,TheFunk,doctormango,Hylotl,DannyPX,chxu,ERA Hatsuki'.split(",")
 
 SB_DEFAULT_X, SB_DEFAULT_Y = 640, 480

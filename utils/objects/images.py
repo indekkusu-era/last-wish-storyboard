@@ -22,7 +22,7 @@ def get_text_image(text, font_file, size):
 
     draw = ImageDraw.Draw(im)
 
-    draw.text((0,0), text, font=font)
+    draw.text((epsilon, epsilon), text, align='center', font=font)
 
     return im
 

@@ -17,7 +17,7 @@ class MappersList:
             scroll_up = 2 * (i % 2) - 1
             initial_actions = [
                 Move(0, appear_time, appear_time, (SB_DEFAULT_X // 2, SB_DEFAULT_Y // 2), (SB_DEFAULT_X // 2, SB_DEFAULT_Y // 2)), 
-                Fade(0, appear_time - 1, appear_time, 0, 1), Fade(0, end_time, end_time + 2000, 1, 0)
+                Fade(0, appear_time - 1, appear_time, 0, 1), Fade(0, end_time, end_time + 3000, 1, 0)
             ]
             mapper_sprite.add_actions(initial_actions)
             next_pos = SB_DEFAULT_Y // 2
