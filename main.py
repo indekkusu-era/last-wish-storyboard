@@ -70,19 +70,19 @@ def storyboard():
         overlay_objects.append(text_sprite)
     
     # add transition to mappers
-    _nine = get_text_image('Collab between\n10\nMappers', font, 50)
+    _nine = get_text_image('10.11⭐\n10 Mappers', 'resources/Pirulen.ttf', 25)
     nine = TransitionToMapper('sb/collab.png').render(11428, 11714, 13714)
     nine.from_image(_nine)
     overlay_objects.append(nine)
-    circle = TransitionToMapper('sb/Magic_Circle.png').render(11428, 11714, 13714, scale=0.15)
-    circle.add_action(Rotate(0, 11428, 13714, 0, 1337/180*3.14))
+    circle = TransitionToMapper('sb/wheel.png').render(11428, 11714, 13714, scale=0.6)
+    circle.add_action(Rotate(0, 11428, 13714, 0, 2*3.14))
     overlay_objects.append(circle)
 
     # add mappers list
-    mapperslist = MappersList(mappers_list)
-    appear_time = [12571, 12642, 12785, 12928, 13071, 13214, 13357, 13428, 13571, 13714]
-    mapper_sprites = mapperslist.render(appear_time, 13714, "resources/source_serif_bold.ttf", 25)
-    overlay_objects += mapper_sprites
+    # mapperslist = MappersList(mappers_list)
+    # appear_time = [12571, 12642, 12785, 12928, 13071, 13214, 13357, 13428, 13571, 13714]
+    # mapper_sprites = mapperslist.render(appear_time, 13714, "resources/source_serif_bold.ttf", 25)
+    # overlay_objects += mapper_sprites
 
     # add vocal text at foreground
     for timestamp, text in text_timestamps.items():
