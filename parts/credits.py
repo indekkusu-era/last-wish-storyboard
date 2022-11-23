@@ -27,17 +27,18 @@ class CreditsText:
         if self._logo == True:
             #add a bit more space on the top
             #i assume about 100 pixels is fine but ye reposition if needed
-            logo_sprite = Sprite("logo") #use logo
+            logo_sprite = Sprite("sb/logo.png") #use logo
             logo_sprite.add_action(Move(0, tstart, tstart, (0, 0), (SB_DEFAULT_X/2, 100))) #idk move it to centre
-            logo_sprite.add_action(Fade(0, tstart, tstart + delay, 0.0, 100.0))
-            logo_sprite.add_action(Fade(0, tend - delay, tend, 0.0, 100.0))
+            logo_sprite.add_action(Fade(0, tstart, tstart + delay, 0.0, 1))
+            logo_sprite.add_action(Fade(0, tend - delay, tend, 0.0, 1))
         
         credit_sprite.add_action(Move(0, tstart, tstart, (0, 0), (SB_DEFAULT_X/2, SB_DEFAULT_Y/2 + logo_offset))) #idk move it to centre
-        credit_sprite.add_action(Fade(0, tstart, tstart + delay, 0.0, 100.0))
-        credit_sprite.add_action(Fade(0, tend - delay, tend, 0.0, 100.0))
+        credit_sprite.add_action(Fade(0, tstart, tstart + delay, 0.0, 1))
+        credit_sprite.add_action(Fade(0, tend - delay, tend, 0.0, 1))
         
-        all_sprites.extend(credit_sprite)
-        all_sprites.extend(logo_sprite)
+        all_sprites.append(credit_sprite)
+        if self._logo:
+            all_sprites.append(logo_sprite)
         
         return all_sprites
     

@@ -11,6 +11,7 @@ from utils.constants.constants import mappers_list, SB_DEFAULT_X, SB_DEFAULT_Y
 from utils.objects.images import get_text_image
 from utils.objects import Rotate
 from effects import Countdown, generate_number_sprites
+from parts.credits import credits_roll
 
 np.random.seed(8)
 
@@ -88,6 +89,8 @@ def storyboard():
     for timestamp, text in text_timestamps.items():
         sps = VocalText(text, 40, font, 5)
         overlay_objects += sps.render(*timestamp, period=25)
+
+    overlay_objects += credits_roll()
 
     sb = StoryBoard(background_objects, foreground_objects, overlay_objects)
     return sb
