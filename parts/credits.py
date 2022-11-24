@@ -24,10 +24,10 @@ class CreditsText:
         delay = 314
         logo_offset = 0
         
-        if self._logo == True:
+        if self._logo:
             #add a bit more space on the top
             #i assume about 100 pixels is fine but ye reposition if needed
-            logo_sprite = Sprite("logo") #use logo
+            logo_sprite = Sprite("sb/logo.png") #use logo
             logo_sprite.add_action(Move(0, tstart, tstart, (0, 0), (SB_DEFAULT_X/2, 100))) #idk move it to centre
             logo_sprite.add_action(Fade(0, tstart, tstart + delay, 0.0, 100.0))
             logo_sprite.add_action(Fade(0, tend - delay, tend, 0.0, 100.0))
@@ -48,8 +48,19 @@ def credits_roll():
     slide2 = CreditsText(20, "resources/source_serif_bold.ttf", 2, True)
     
     #im too tired LOL wrote it in a full line with the \n
-    slide1.insert_text("Final escape granted\nLNcryption destroyed\n57 customs committed")
-    slide2.insert_text("Heartfelt thanks to all Poolers, Mappers and Playtesters who put in blood,\nsweat and tears to realize this (almost) year-long mapping project, and\nall Referees, Commentators and Streamers who put all their soul and time\ninto overseeing the smooth running of this tournament. None of this\nis possible without the efforts from everyone.\n\nSpecial Thanks to Supa7onyz and HowToPlayLN for their amazing\ncustom songs. All credit is due to composers where they deserve it <3\n\nLast but not least, thank you for playing (the maps of) o!mLN3!")
+    slide1.insert_text("""Final escape granted
+                       LNcryption destroyed
+                       57 customs committed""")
+    slide2.insert_text("""Heartfelt thanks to all Poolers, Mappers and Playtesters who put in blood,
+                       sweat and tears to realize this (almost) year-long mapping project, and
+                       all Referees, Commentators and Streamers who put all their soul and time
+                       into overseeing the smooth running of this tournament. None of this
+                       is possible without the efforts from everyone.
+                       
+                       Special Thanks to Supa7onyz and HowToPlayLN for their amazing
+                       custom songs. All credit is due to composers where they deserve it <3
+                       
+                       Last but not least, thank you for playing (the maps of) o!mLN3!""")
     
     credit_slides.extend(slide1.render(330103, 335103))
     credit_slides.extend(slide2.render(335103, 345103))
