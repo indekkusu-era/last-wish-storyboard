@@ -4,13 +4,12 @@ from utils.sb import StoryBoard
 from effects.visualizer import last_wish_visualizer
 from effects.vocal_text import VocalText
 from effects.darken import do_you_think_i_want_this, i_wont_leave_you_behind, this_is_your_last_wish, intro
-from effects.mapper_transition import MapperTransition
 from effects.mapper_parts import all_parts
 from parts import MappersList, FadeInFadeOut, TransitionToMapper
 from utils.constants.constants import mappers_list, SB_DEFAULT_X, SB_DEFAULT_Y
 from utils.objects.images import get_text_image
 from utils.objects import Rotate
-from effects import Countdown, generate_number_sprites
+from effects import generate_number_sprites
 
 np.random.seed(8)
 
@@ -70,7 +69,7 @@ def storyboard():
         overlay_objects.append(text_sprite)
     
     # add transition to mappers
-    _nine = get_text_image('10.11⭐\n10 Mappers', 'resources/Pirulen.ttf', 25)
+    _nine = get_text_image('10.17 Stars\n10 Mappers', 'resources/Pirulen.ttf', 25)
     nine = TransitionToMapper('sb/collab.png').render(11428, 11714, 13714)
     nine.from_image(_nine)
     overlay_objects.append(nine)
@@ -79,10 +78,10 @@ def storyboard():
     overlay_objects.append(circle)
 
     # add mappers list
-    # mapperslist = MappersList(mappers_list)
-    # appear_time = [12571, 12642, 12785, 12928, 13071, 13214, 13357, 13428, 13571, 13714]
-    # mapper_sprites = mapperslist.render(appear_time, 13714, "resources/source_serif_bold.ttf", 25)
-    # overlay_objects += mapper_sprites
+    mapperslist = MappersList(mappers_list)
+    appear_time = [12571, 12642, 12785, 12928, 13071, 13214, 13357, 13428, 13571, 13714]
+    mapper_sprites = mapperslist.render(appear_time, 13714, "resources/source_serif_bold.ttf", 25)
+    overlay_objects += mapper_sprites
 
     # add vocal text at foreground
     for timestamp, text in text_timestamps.items():
