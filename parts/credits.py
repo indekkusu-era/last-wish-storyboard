@@ -1,3 +1,9 @@
+'''
+*    Title: Ending credits for Last Wish Storyboard
+*    Author: Polytetral
+*    Date: 25th November 2022
+'''
+
 from utils.objects import *
 from utils.objects.actions import Fade
 from utils.constants.constants import SB_DEFAULT_X, SB_DEFAULT_Y
