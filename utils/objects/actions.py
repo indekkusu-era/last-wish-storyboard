@@ -87,3 +87,6 @@ class Loop():
     
     def render(self):
         return self.__repr__()
+    
+    def change_offset(self, offset: int):
+        self.start_time += offset

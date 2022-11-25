@@ -9,6 +9,7 @@ from utils.sb import Sprite
 from .countdown import Countdown
 from utils.objects.images import get_text_image
 from  .vocal_text import VocalText
+from utils.constants.constants import mappers
 
 #flashing color for bar 4 measures before the end of drain bar -> component 2 for end
 #redtransitions = [Color(0, tstart, tend, (255, 255, 255), (255, 0, 0)), Color(0, tstart, tend, (255, 0, 0), (255, 255, 255))]
@@ -173,50 +174,15 @@ def mapper_bar_2(part: Part):
 
 def mapper_bar_3(part: Part):
     return part.render()
-    
-def all_parts():
-    #htpln = Part("HowToPlayLN", "LNCrypted Memories \"Corrupted Fragments\"", 2285, 13714) example， but is now omitted cus of intro
-    #fill in spellcard names when mappers have input their card names
-    funk1 = Part("TheFunk", "Phantom Hallucination \"Encryptic Storm\"", 13714, 32000)
-    funk2 = Part("TheFunk", "Phantom Hallucination \"Apocalyptic Devination\"", 32000, 42552)
-    sere1 = Part("[Crz]Crysarlene", "Serenity \"Calm Before The Apocalypse\"", 42552, 66552)
-    sere2 = Part("[Crz]Crysarlene", "Serenity \"The Great Depression\"", 66552, 82552)
-    #chxu1 = Part("chxu", "something", 82552, 98552)
-    logan = Part("Logan636", "Communion \"Dichotomic Collapse\"", 98552, 119322)
-    mango1 = Part("doctormango", "Havoc \"Doppelganger Syndrome\"", 119322, 133037)
-    felix1 = Part("FelixSpade", "Illusion Art \"Berserker's Haze\"", 133037, 159314)
-    akats = Part("ERA Hatsuki", "The Great \"eLegaNtic Outburst\"", 159314, 191603)
-    mango2 = Part("doctormango", "Havoc \"Suspense\"", 191603, 209603)
-    #chxu2 = Part("chxu", "something1", 209603, 225603)
-    #chxu3 = Part("chxu", "something2", 225603, 257603)
-    hylotl1 = Part("Hylotl", "LuNacy Sign \"A Pristine Long Note Hell\"", 257603, 273603)
-    danny1 = Part("DannyPX", "TBC", 273603, 289603)
-    felix2 = Part("FelixSpade", "Illusion Art \"Doomsday Reverie\"", 289603, 305603)
-    hylotl2 = Part("Hylotl", "LuNacy Sign \"Schizophrenic Psychosis\"", 305603, 321603)
-    danny2 = Part("DannyPX", "Archseer \"Equilateral Impact\"", 321603, 330103)
-    
-    #add all parts (im lazy to generalize since its a countable number lmao)
+
+def generate_parts(mappers, end):
     all_bars = []
-    mapper_bar_f = mapper_bar_3
-    all_bars.extend(mapper_bar_f(funk1))
-    all_bars.extend(mapper_bar_f(funk2))
-    all_bars.extend(mapper_bar_f(sere1))
-    all_bars.extend(mapper_bar_f(sere2))
-    #all_bars.extend(mapper_bar_f(chxu1))
-    #all_bars.extend(mapper_bar_f(logan))
-    all_bars.extend(mapper_bar_f(mango1))
-    all_bars.extend(mapper_bar_f(felix1))
-    all_bars.extend(mapper_bar_f(akats))
-    all_bars.extend(mapper_bar_f(mango2))
-    #all_bars.extend(mapper_bar_f(chxu2))
-    #all_bars.extend(mapper_bar_f(chxu3))
-    all_bars.extend(mapper_bar_f(hylotl1))
-    all_bars.extend(mapper_bar_f(danny1))
-    all_bars.extend(mapper_bar_f(felix2))
-    all_bars.extend(mapper_bar_f(hylotl2))
-    all_bars.extend(mapper_bar_f(danny2))
-    
+    parts = list(mappers.keys()) + [end]
+    intervals = list(zip(parts[:-1], parts[1:]))
+    for (t0, t1), (name, spellcard) in zip(intervals, mappers.values()):
+        part = Part(name, spellcard, t0, t1)
+        all_bars.extend(part.render())
     return all_bars
 
-    # bars_sb = StoryBoard(background_objects = all_bars)
-    # bars_sb.osb("drainbars.osb")
+def all_parts():
+    return generate_parts(mappers, 330103)

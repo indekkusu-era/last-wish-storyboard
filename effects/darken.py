@@ -37,4 +37,12 @@ def intro():
     sprite.add_action(Fade(0, start, max_opa, 0.727, 0.727))
     sprite.add_action(Fade(0, max_opa, end, 0.727, 0))
     return sprite
-    
+
+def ending():
+    start = 330103; max_opa = start + 314; end = 345353
+    sprite = Sprite('sb/white.png')
+    sprite.add_action(Color(0, start, end, (0,0,0), (0,0,0)))
+    sprite.add_action(Scale(0, start, end, 5, 5))
+    sprite.add_action(Fade(0, start, max_opa, 0, 1))
+    sprite.add_action(Fade(0, end - 1, end, 1, 0))
+    return sprite

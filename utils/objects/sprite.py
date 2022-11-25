@@ -41,7 +41,7 @@ class Sprite:
     
     def change_offset(self, offset: int):
         for i in range(len(self.action)):
-            self.action.change_offset(offset)
+            self.action[i].change_offset(offset)
         return self
 
 
