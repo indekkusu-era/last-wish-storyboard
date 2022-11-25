@@ -70,12 +70,12 @@ def storyboard():
         overlay_objects.append(text_sprite)
     
     # add transition to mappers
-    _nine = get_text_image('10.16 Stars\n10 Mappers', 'resources/Pirulen.ttf', 25)
+    _nine = get_text_image('9.04 Stars\n10 Mappers', 'resources/Pirulen.ttf', 25)
     nine = TransitionToMapper('sb/collab.png').render(11428, 11714, 13714)
     nine.from_image(_nine)
     overlay_objects.append(nine)
     circle = TransitionToMapper('sb/wheel.png').render(11428, 11714, 13714, scale=0.6)
-    # circle.add_action(Rotate(0, 11428, 13714, 0, 2*3.14))
+    circle.add_action(Rotate(0, 11428, 13714, 0, 2*3.14))
     overlay_objects.append(circle)
 
     # add mappers list
