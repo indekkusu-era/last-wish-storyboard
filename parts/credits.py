@@ -34,8 +34,8 @@ class CreditsText:
             #add a bit more space on the top
             #i assume about 100 pixels is fine but ye reposition if needed
             logo_sprite = Sprite("sb/logo.png") #use logo
-            logo_sprite.add_action(MoveY(0, tstart, tstart, 100, 100)) #idk move it to centre
-            logo_sprite.add_action(Scale(0, tstart, tstart, 0.6, 0.6))
+            logo_sprite.add_action(MoveY(0, tstart, tstart, 75, 75)) #idk move it to centre
+            logo_sprite.add_action(Scale(0, tstart, tstart, 0.5, 0.5))
             logo_sprite.add_action(Fade(0, tstart, tstart + delay, 0.0, 1.0))
             logo_sprite.add_action(Fade(0, tend - delay, tend, 1.0, 0.0))
 
@@ -52,8 +52,8 @@ class CreditsText:
 def credits_roll():
     #example usage
     credit_slides = []
-    slide1 = CreditsText(20, "resources/source_serif_bold.ttf", 1, False)
-    slide2 = CreditsText(20, "resources/source_serif_bold.ttf", 2, True)
+    slide1 = CreditsText(30, "resources/source_serif_bold.ttf", 1, False)
+    slide2 = CreditsText(15, "resources/source_serif_bold.ttf", 2, True)
     
     with open('credits_text/slide1.txt', 'r') as f:
         slide1_text = f.read()

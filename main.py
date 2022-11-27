@@ -70,7 +70,7 @@ def storyboard():
         overlay_objects.append(text_sprite)
     
     # add transition to mappers
-    _nine = get_text_image('9.04 Stars\n10 Mappers', 'resources/Pirulen.ttf', 25)
+    _nine = get_text_image('10 Mappers\nCollab', 'resources/Pirulen.ttf', 25)
     nine = TransitionToMapper('sb/collab.png').render(11428, 11714, 13714)
     nine.from_image(_nine)
     overlay_objects.append(nine)
